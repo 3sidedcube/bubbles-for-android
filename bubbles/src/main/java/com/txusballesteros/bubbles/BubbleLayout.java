@@ -189,8 +189,12 @@ public class BubbleLayout extends BubbleBaseLayout {
         if(shouldStickToWall){
             int middle = width / 2;
             float nearestXWall = getViewParams().x >= middle ? width : 0;
-            animator.start(nearestXWall, getViewParams().y);
+            moveAnimated(nearestXWall, getViewParams().y);
         }
+    }
+
+    public void moveAnimated(float destX, float destY) {
+        animator.start(destX, destY);
     }
 
     private void move(float deltaX, float deltaY) {
