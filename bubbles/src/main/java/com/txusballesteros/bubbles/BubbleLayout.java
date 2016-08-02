@@ -49,6 +49,7 @@ public class BubbleLayout extends BubbleBaseLayout {
     private int width;
     private WindowManager windowManager;
     private boolean shouldStickToWall = true;
+    private boolean isDragEnabled = true;
 
     public void setOnBubbleRemoveListener(OnBubbleRemoveListener listener) {
         onBubbleRemoveListener = listener;
@@ -83,6 +84,10 @@ public class BubbleLayout extends BubbleBaseLayout {
         this.shouldStickToWall = shouldStick;
     }
 
+    public void setDragEnabled(boolean dragEnabled) {
+        this.isDragEnabled = dragEnabled;
+    }
+
     void notifyBubbleRemoved() {
         if (onBubbleRemoveListener != null) {
             onBubbleRemoveListener.onBubbleRemoved(this);
@@ -114,13 +119,16 @@ public class BubbleLayout extends BubbleBaseLayout {
                     animator.stop();
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    int x = initialX + (int)(event.getRawX() - initialTouchX);
-                    int y = initialY + (int)(event.getRawY() - initialTouchY);
-                    getViewParams().x = x;
-                    getViewParams().y = y;
-                    getWindowManager().updateViewLayout(this, getViewParams());
-                    if (getLayoutCoordinator() != null) {
-                        getLayoutCoordinator().notifyBubblePositionChanged(this, x, y);
+                    if (isDragEnabled)
+                    {
+                        int x = initialX + (int)(event.getRawX() - initialTouchX);
+                        int y = initialY + (int)(event.getRawY() - initialTouchY);
+                        getViewParams().x = x;
+                        getViewParams().y = y;
+                        getWindowManager().updateViewLayout(this, getViewParams());
+                        if (getLayoutCoordinator() != null) {
+                            getLayoutCoordinator().notifyBubblePositionChanged(this, x, y);
+                        }
                     }
                     break;
                 case MotionEvent.ACTION_UP:
