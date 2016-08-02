@@ -106,7 +106,7 @@ public class BubbleLayout extends BubbleBaseLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event != null) {
+        if (event != null && isEnabled()) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     initialX = getViewParams().x;
