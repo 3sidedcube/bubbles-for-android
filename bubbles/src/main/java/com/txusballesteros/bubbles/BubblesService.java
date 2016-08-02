@@ -27,7 +27,6 @@ package com.txusballesteros.bubbles;
 import android.app.Service;
 import android.content.Intent;
 import android.graphics.PixelFormat;
-import android.graphics.Point;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
@@ -36,7 +35,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,7 +92,7 @@ public class BubblesService extends Service {
         addViewToWindow(bubble);
     }
 
-    void addTrash(int trashLayoutResourceId) {
+    public void addTrash(int trashLayoutResourceId) {
         if (trashLayoutResourceId != 0) {
             bubblesTrash = new BubbleTrashLayout(this);
             bubblesTrash.setWindowManager(windowManager);
