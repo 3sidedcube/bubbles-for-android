@@ -43,6 +43,7 @@ public class BubbleLayout extends BubbleBaseLayout {
     private int initialY;
     private OnBubbleRemoveListener onBubbleRemoveListener;
     private OnBubbleClickListener onBubbleClickListener;
+    private OnBubbleSnappedToWallListener onBubbleSnappedToWallListener;
     private static final int TOUCH_TIME_THRESHOLD = 150;
     private long lastTouchDown;
     private MoveAnimator animator;
@@ -57,6 +58,10 @@ public class BubbleLayout extends BubbleBaseLayout {
 
     public void setOnBubbleClickListener(OnBubbleClickListener listener) {
         onBubbleClickListener = listener;
+    }
+
+    public void setOnBubbleSnappedToWallListener(OnBubbleSnappedToWallListener listener) {
+        onBubbleSnappedToWallListener = listener;
     }
 
     public BubbleLayout(Context context) {
@@ -193,11 +198,18 @@ public class BubbleLayout extends BubbleBaseLayout {
         void onBubbleClick(BubbleLayout bubble);
     }
 
+    public interface OnBubbleSnappedToWallListener {
+        void onBubbleSnappedToWall(BubbleLayout bubble, int x, int y);
+    }
+
     public void goToWall() {
         if(shouldStickToWall){
             int middle = width / 2;
             float nearestXWall = getViewParams().x >= middle ? width : 0;
             moveAnimated(nearestXWall, getViewParams().y);
+            if (onBubbleSnappedToWallListener != null) {
+                onBubbleSnappedToWallListener.onBubbleSnappedToWall(this, (int) nearestXWall, getViewParams().y);
+            }
         }
     }
 
