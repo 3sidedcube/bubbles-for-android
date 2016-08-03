@@ -148,7 +148,7 @@ public class BubbleLayout extends BubbleBaseLayout {
         return super.onTouchEvent(event);
     }
 
-    private void playAnimation() {
+    public void playAnimation() {
         if (!isInEditMode()) {
             AnimatorSet animator = (AnimatorSet) AnimatorInflater
                     .loadAnimator(getContext(), R.animator.bubble_shown_animator);
@@ -157,7 +157,7 @@ public class BubbleLayout extends BubbleBaseLayout {
         }
     }
 
-    private void playAnimationClickDown() {
+    public void playAnimationClickDown() {
         if (!isInEditMode()) {
             AnimatorSet animator = (AnimatorSet) AnimatorInflater
                     .loadAnimator(getContext(), R.animator.bubble_down_click_animator);
@@ -166,7 +166,7 @@ public class BubbleLayout extends BubbleBaseLayout {
         }
     }
 
-    private void playAnimationClickUp() {
+    public void playAnimationClickUp() {
         if (!isInEditMode()) {
             AnimatorSet animator = (AnimatorSet) AnimatorInflater
                     .loadAnimator(getContext(), R.animator.bubble_up_click_animator);
