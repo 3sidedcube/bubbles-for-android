@@ -84,7 +84,10 @@ public class BubblesService extends Service {
     }
 
     public void addBubble(BubbleLayout bubble, int x, int y) {
-        WindowManager.LayoutParams layoutParams = buildLayoutParamsForBubble(x, y);
+        addBubble(bubble, buildLayoutParamsForBubble(x, y));
+    }
+
+    public void addBubble(BubbleLayout bubble, WindowManager.LayoutParams layoutParams) {
         bubble.setWindowManager(getWindowManager());
         bubble.setViewParams(layoutParams);
         bubble.setLayoutCoordinator(layoutCoordinator);
@@ -120,7 +123,7 @@ public class BubblesService extends Service {
         });
     }
 
-    private WindowManager.LayoutParams buildLayoutParamsForBubble(int x, int y) {
+    protected WindowManager.LayoutParams buildLayoutParamsForBubble(int x, int y) {
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
@@ -133,7 +136,7 @@ public class BubblesService extends Service {
         return params;
     }
 
-    private WindowManager.LayoutParams buildLayoutParamsForTrash() {
+    protected WindowManager.LayoutParams buildLayoutParamsForTrash() {
         int x = 0;
         int y = 0;
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
