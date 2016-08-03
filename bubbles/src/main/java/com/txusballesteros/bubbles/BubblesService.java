@@ -52,12 +52,13 @@ public class BubblesService extends Service {
     }
 
     @Override
-    public boolean onUnbind(Intent intent) {
+    public void onDestroy()
+    {
         for (BubbleLayout bubble : bubbles) {
-            recycleBubble(bubble);
+            removeBubble(bubble);
         }
         bubbles.clear();
-        return super.onUnbind(intent);
+        super.onDestroy();
     }
 
     private void recycleBubble(final BubbleLayout bubble) {
