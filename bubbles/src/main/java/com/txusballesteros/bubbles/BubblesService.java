@@ -128,7 +128,7 @@ public class BubblesService extends Service {
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.TYPE_PHONE,
+                WindowManager.LayoutParams.TYPE_PRIORITY_PHONE,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSPARENT);
         params.gravity = Gravity.TOP | Gravity.START;
