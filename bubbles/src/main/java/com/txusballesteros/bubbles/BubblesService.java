@@ -123,7 +123,9 @@ public class BubblesService extends Service {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                getWindowManager().addView(view, view.getViewParams());
+                if (ViewCompat.isAttachedToWindow(view)) {
+                    getWindowManager().addView(view, view.getViewParams());
+                }
             }
         });
     }
